@@ -1,0 +1,21 @@
+function [lambda,x,k,v] = directVecIter(A,x0,tol,lambda0)
+x0 = 1/sqrt((x0'*x0))*x0; % x0 normieren
+x_iter = A*x0;
+lambda_old = x0'*x_iter;
+x_iter = 1/sqrt((x_iter'*x_iter))*x_iter;
+x1 = A * x_iter;
+lambda_new = x_iter' * x1;
+x1 = 1/sqrt((x1'*x1)) * x1; % x1 normieren
+k = 1;
+v(k) = log(abs(lambda_new - lambda0));
+while(abs(lambda_new - lambda_old) >= tol)
+    lambda_old = lambda_new;
+    x_iter = A * x1;
+    lambda_new = x1' * x_iter;
+    x1 = x_iter;
+    x1 = 1/sqrt((x1'*x1))*x1;
+    k = k + 1;
+    v(k) = log(abs(lambda_new - lambda0));
+end
+lambda = lambda_new;
+x = x_iter;
