@@ -6,6 +6,7 @@ for i = 1 : (n+1)
     L = @(x) ((eye(1,i) * legendre(i-1,x)));
     b_func = @(x) (L(x).* f(x));
     b(i) = integral(b_func,-1,1);
+    u(i) = b(i)/A(i,i)
 end
-u = A\b;
+fprintf("condition of matrix A legendreapprox with n = %d is %f\n",n,cond(A));
 end
