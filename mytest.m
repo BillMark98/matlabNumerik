@@ -910,6 +910,10 @@
 %     legend('f(x)','monom','legendre');
 % end
 
+
+% **********************************
+% **********************************
+% Uebung 6
    
 % u = [-1 2 3 -2 0 1 2]
 % v = [2 4 -1 1]
@@ -932,37 +936,57 @@
 % f2 = @(x) (8*x.^4 - x)
 % L2c_BN(f2,4)
 
-% f = @(x) x.^6 - 1;
-% p5 = L2_BN(f,5);
-% p5_tild = L2c_BN(f,5);
-% temp = zeros(7,1);
-% temp(1) = 1;
-% 
-% p5_hat = -(2.^(-5)).*Tscheby_poly(6);
-% p5_hat(1) = p5_hat(1) +1;
-% p5_hat(7) = p5_hat(7) -1;
-% figure(1)
-% x = -1:0.01:1;
-% plot(x,f(x))
-% hold on
-% plot(x,polyval(p5,x));
-% plot(x,polyval(p5_tild,x));
-% plot(x,polyval(p5_hat,x));
-% legend('f','L_2 approximation','L_{2c} approximation','Maximum approximation')
-% 
+f = @(x) x.^6 - 1;
+p5 = L2_BN(f,5);
+p5_tild = L2c_BN(f,5);
+temp = zeros(7,1);
+temp(1) = 1;
+
+p5_hat = -(2.^(-5)).*Tscheby_poly(6);
+p5_hat(1) = p5_hat(1) +1;
+p5_hat(7) = p5_hat(7) -1;
+figure(3)
+x = -1:0.01:1;
+plot(x,f(x),'k')
+hold on
+plot(x,polyval(p5,x),'r','LineWidth',3);
+plot(x,polyval(p5_tild,x),'b','LineWidth',3);
+plot(x,polyval(p5_hat,x),'c','LineWidth',3);
+legend('f','L_2 approximation','L_{2c} approximation','L_\infty approximation')
+
 % res1 = max(abs(f(x) - polyval(p5_tild,x)));
 % res2 = max(abs(f(x) - polyval(p5_hat,x)));
 
-x = -3 : 0.01 : 5;
-p = [1,-2,1,0];
-p1 = [-11/4,55/64,-1/256];
-plot(x,polyval(p,x));
-hold on
-plot(x,polyval(p1,x));
+norm_pmax = norm(polyval(p5_tild,x) - (x.^6 - 1),'inf');
+norm_pmax = norm(polyval(p5_hat,x) - (x.^6 - 1),'inf');
+% x = -3 : 0.01 : 5;
+% p = [1,-2,1,0];
+% p1 = [-11/4,55/64,-1/256];
+% plot(x,polyval(p,x));
+% hold on
+% plot(x,polyval(p1,x));
+% 
+% q = [1,-10,1,0];
+% q1 = [-43/4,55/64,-1/256];
+% figure
+% plot(x,polyval(q,x));
+% hold on
+% plot(x,polyval(q1,x));
 
-q = [1,-10,1,0];
-q1 = [-43/4,55/64,-1/256];
-figure
-plot(x,polyval(q,x));
-hold on
-plot(x,polyval(q1,x));
+% figure(1)
+% hold on
+% x = linspace(-1,1,101);
+% n = 10;
+% for i = 0 : n
+%     plot(x,polyval(Legendre_poly(i),x));
+% end
+% title('Legendre-Polynome');
+% hold off;
+% 
+% figure(2)
+% hold on
+% for i = 0 : n
+%     plot(x,polyval(Tscheby_poly(i),x));
+% end
+% title('Tschebyscheff-Polynome');
+% hold off;
