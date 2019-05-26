@@ -50,12 +50,12 @@
 % end
 
 
-
-t = [0,0.5,0.7,1];
-ft = [-1,1,2,1];
-x = [0.25,1];
-y = lagrangeIP(t,ft,x)
-w = aitkenNevilleIP(t,ft,x)
+% 
+% t = [0,0.5,0.7,1];
+% ft = [-1,1,2,1];
+% x = [0.25,1];
+% y = lagrangeIP(t,ft,x)
+% w = aitkenNevilleIP(t,ft,x)
 
 f = @(x) 1./(1 + x.^2);
 L = [2,8,24];
@@ -69,14 +69,20 @@ for index = 1 : 3
     x = linspace(-3,3,200);
     lagrang = lagrangeIP(t,ft,x);
     aitken = aitkenNevilleIP(t,ft,x);
-    plot(x,lagrang);
-    plot(x,aitken);
-%     subplot(3,2,2 * index - 1);
 %     plot(x,lagrang);
-%     subplot(3,2,2 * index);
 %     plot(x,aitken);
+    subplot(3,2,2 * index - 1);
+    plot(x,lagrang);
+    ylim([-1,1]);
+    legend(['lagrange mit n = ',num2str(n)]);
+    subplot(3,2,2 * index);
+    plot(x,aitken);
+    ylim([-1,1]);
+    legend(['aitken mit n = ',num2str(n)]);
 end
-legend('lagrange n = 2','aitken n = 2','lagrange n = 8','aitken n = 8','lagrange n = 24','aitken n = 24');
+figure
+plot(x,f(x))
+% legend('lagrange n = 2','aitken n = 2','lagrange n = 8','aitken n = 8','lagrange n = 24','aitken n = 24');
 % count = 1
 % for  n = 16 : 22;
 %     tic
