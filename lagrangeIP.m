@@ -1,7 +1,13 @@
 function [y] = lagrangeIP(t,ft,x)
-    n = length(x);
-    for index = 1 : n
-        y(index) = lagrangeInterSum(t,ft,x(index));
+%     n = length(x);
+%     for index = 1 : n
+%         y(index) = lagrangeInterSum(t,ft,x(index));
+%     end
+%     
+    n = length(t) - 1;
+    y = zeros(length(x));
+    for i = 0:n
+        y = y + ft(i+1)*lagrangePolynomial(i,t,x);
     end
 end
 

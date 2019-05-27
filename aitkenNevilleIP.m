@@ -23,11 +23,32 @@ function [y] = aitkenNevilleIP(t,ft,x)
           A(:,1) = ft;
           for i = 2 : n
               for j = 2 : i
+                  % A(i,j) means P(f|x_{i-(j-1)},x_{i-(j-2)}...,x_{i})(x)
+                  % different to script P(f|x_{i-j},...,x_{i})(x)
                   A(i,j) = A(i,j-1) + (x(index) - t(i))/(t(i) - t(i-j+1)) * (A(i,j-1) - A(i-1,j-1));
               end
           end
           y(index) = A(n,n);
       end
+      
+      
+      
+      
+      
+      
+%       n = max(size(t))-1;
+%       P = zeros(n+1,n+1);
+%       P(:,1) = ft;
+%       for a = 1 : max(size(x))
+%           for k = 2:n+1
+%               for i = k : n+1
+%                   P(i,k) = P(i,k-1) + ...
+%                             (P(i,k-1) - P(i-1,k-1) * ...
+%                                         (x(a) - t(i))/(t(i) - t(i - k + 1));
+%               end
+%           end
+%           y(a) = P(n+1,n+1);
+%       end
 end
 % convert a given vector to a row vector
 function t = makeRow(t)
