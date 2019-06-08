@@ -1,21 +1,24 @@
 f = @(x) 1./(1 + x.^2);
 L = [5,10,40];
-I = [-5,5];
+ende = 2;
+I = [-ende,ende];
 figure;
 
 for index = 1 : 3
     n = L(index);
+    left = -ende;
     subplot(1,3,index);
+    
     fplot(f,I,'k:');
     hold on;
     i = 0 : 1 : n;
-    x = -5 + 10*i/n;
+    x = -ende + 2 * ende *i/n;
     y = f(x);
     p = polyfit(x,y,n);
     interpol = @(x) polyval(p,x);
     fplot(interpol,I);
-    ylim([-5,1.5]);
-    title(['equidist IP n = ',num2str(n)]);
+%     ylim([-5,1.5]);
+    title(['equidist IP n = ',num2str(n)],'Units','normalized','Position',[0.68,1,0]);
     legend('f','IP');
 end
 
@@ -27,12 +30,12 @@ for index = 1 : 3
     fplot(f,I,'k:');
     hold on;
     i = 0 : 1 : n;
-    x = 5 * cos((2*i+1)/(2*n+2)*pi);
+    x = ende * cos((2*i+1)/(2*n+2)*pi);
     y = f(x);
     p = polyfit(x,y,n);
     interpol = @(x) polyval(p,x);
     fplot(interpol,I);
-    ylim([-5,1.5]);
+%     ylim([-5,1.5]);
     title(['tscheby points IP n = ',num2str(n)]);
     legend('f','IP');
 end
@@ -44,9 +47,9 @@ for index = 1 : 3
     hold on;
     i = 0 : 1 : n;
     
-    x1 = -5 + 10*i/n;
+    x1 = -ende + 2 * ende *i/n;
     p1 = poly(x1);
-    x2 = 5 * cos((2*i+1)/(2*n+2)*pi);
+    x2 = ende * cos((2*i+1)/(2*n+2)*pi);
     p2 = poly(x2);
   
     knotenpoly1 = @(x) polyval(p1,x);
