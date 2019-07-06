@@ -27,16 +27,16 @@
 % hold off
 
 
-% cc = [1 0 1 0 -1];
-% x0 = -1;
-% x1 = 0;
-% x2 = 1;
-% pp = mkpp([x0,x1,x2],[cc;-cc]);
-% xx = x0:0.1:x2;
-% plot(xx,ppval(pp,xx),'k-')
-% hold on
-% line([0,0],ylim,'LineStyle','--')
-% hold off
+cc = [1 0 1 0 -1];
+x0 = -1;
+x1 = 0;
+x2 = 1;
+pp = mkpp([x0,x1,x2],[cc;-cc]);
+xx = x0:0.1:x2;
+plot(xx,ppval(pp,xx),'k-')
+hold on
+line([0,0],ylim,'LineStyle','--')
+hold off
 
 
 % f = [1;1;2;2];
@@ -62,16 +62,16 @@
 % line([2,2],ylim,'LineStyle','--')
 % line([3,3],ylim,'LineStyle','--')
 
-f = @(x) 1./(1 + x.^2);
-n = 11;
-x = linspace(-5,5,n);
-I = [-5,5]
-ff = f(x);
-a = -5;
-b = 5;
-pp = cubicSpline(ff,a,b);
-xx = a : 0.1 : b;
-plot(xx,ppval(pp,xx),'r-')
-hold on
-fplot(f,I,'k:')
-legend('spline','f')
+% f = @(x) 1./(1 + x.^2);
+% n = 11;
+% x = linspace(-5,5,n);
+% I = [-5,5]
+% ff = f(x);
+% a = -5;
+% b = 5;
+% pp = cubicSpline(ff,a,b);
+% xx = a : 0.1 : b;
+% plot(xx,ppval(pp,xx),'r-')
+% hold on
+% fplot(f,I,'k:')
+% legend('spline','f')
