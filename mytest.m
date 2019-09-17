@@ -881,40 +881,64 @@
 % diff = A * v - b
 
 
+% ************************************
+% ************************************
+% uebung 05
+
 % f = @(x) x.^2 + 2*x + x.^3 % 2/5*(5/2*x^3 - 3/2*x) + 2/3*(3/2*x^2 - 1/2) + 3/5*x+2*x + 1/3
 % % = 2/5 * phi3 + 2/3 * phi2 + 2.6 * phi1 + 1/3
 % u = legendreL2Approximation(20,f);
 % 
 % v = monomL2Approximation(5,f)
-% 
+
 % u = [1,2,1]'
 % x = [0,1]'
-%  y = legrendrePolynom(u,x)
-% L = [10,50,100];
-% f1 = @(x) abs(x)
-% for i = 1 : 3
-%     figure(i);
+% % y = 1/2 + 2x + 3/2*x^2
+% y = legrendrePolynom(u,x)
+% 
+% u1 = [1,1,2,2]'
+% x1 = [0,0.5,1]'
+% % y1 = 5x^3 + 3x^2 - 2x
+% y1 = legrendrePolynom(u1,x1)
+
+
+L = [10,50,100];
+f1 = @(x) abs(x)
+for i = 1 : 3
+    figure(i);
 % 
 %     subplot(2,1,1);    
 %     hold on;
 %     pnM = monomL2Approximation(L(i),f1);
 %     pnL = legendreL2Approximation(L(i),f1);
 %     fplot(f1,[-1,1],'color','blue');
-%     
 %     fplot(@(x)(monomPolynom(pnM,x)),[-1,1],'color','magenta');
-%     x = 
-%     subplot(2,2,1);
+%     legend('f(x)','monom');
+%     
+%     subplot(2,1,2);
 %     hold on;
 %     fplot(f1,[-1,1],'color','blue');
 %     fplot(@(x)(legrendrePolynom(pnL,x)),[-1,1],'color','cyan');
+%     legend('f(x)','legendre');
 %     legend('f(x)','monom','legendre');
-% end
 
 
+         
+    hold on;
+    pnM = monomL2Approximation(L(i),f1);
+    pnL = legendreL2Approximation(L(i),f1);
+    fplot(f1,[-1,1],'color','blue');
+    fplot(@(x)(monomPolynom(pnM,x)),[-1,1],'color','magenta');
+    legend('f(x)','legendre');
+    fplot(@(x)(legrendrePolynom(pnL,x)),[-1,1],'color','cyan');
+    legend('f(x)','monom','legendre');
+end
+
+% 
 % **********************************
 % **********************************
 % Uebung 6
-   
+%    
 % u = [-1 2 3 -2 0 1 2]
 % v = [2 4 -1 1]
 % w = conv(u,v,'same')
@@ -923,42 +947,42 @@
 % a = [2,1,3]'
 % b = [1,0]'
 % c = conv(a,b)
-
+% 
 % c = Legendre_poly(4)
 % d = Tscheby_poly(4)
-
+% 
 % c0 = [0,1]';
 % c0 = [0;c0(:,1)]
 % f1 = @(x) (35*x.^3 - 30*x.^2 +3*x - 1)
 % L2_BN(f1,3)
-
-
+% 
+% 
 % f2 = @(x) (8*x.^4 - x)
 % L2c_BN(f2,4)
-
-f = @(x) x.^6 - 1;
-p5 = L2_BN(f,5);
-p5_tild = L2c_BN(f,5);
-temp = zeros(7,1);
-temp(1) = 1;
-
-p5_hat = -(2.^(-5)).*Tscheby_poly(6);
-p5_hat(1) = p5_hat(1) +1;
-p5_hat(7) = p5_hat(7) -1;
-figure(3)
-x = -1:0.01:1;
-plot(x,f(x),'k')
-hold on
-plot(x,polyval(p5,x),'r','LineWidth',3);
-plot(x,polyval(p5_tild,x),'b','LineWidth',3);
-plot(x,polyval(p5_hat,x),'c','LineWidth',3);
-legend('f','L_2 approximation','L_{2c} approximation','L_\infty approximation')
-
-% res1 = max(abs(f(x) - polyval(p5_tild,x)));
-% res2 = max(abs(f(x) - polyval(p5_hat,x)));
-
-norm_pmax = norm(polyval(p5_tild,x) - (x.^6 - 1),'inf');
-norm_pmax = norm(polyval(p5_hat,x) - (x.^6 - 1),'inf');
+% 
+% f = @(x) x.^6 - 1;
+% p5 = L2_BN(f,5);
+% p5_tild = L2c_BN(f,5);
+% temp = zeros(7,1);
+% temp(1) = 1;
+% 
+% p5_hat = -(2.^(-5)).*Tscheby_poly(6);
+% p5_hat(1) = p5_hat(1) +1;
+% p5_hat(7) = p5_hat(7) -1;
+% figure(3)
+% x = -1:0.01:1;
+% plot(x,f(x),'k')
+% hold on
+% plot(x,polyval(p5,x),'r','LineWidth',3);
+% plot(x,polyval(p5_tild,x),'b','LineWidth',3);
+% plot(x,polyval(p5_hat,x),'c','LineWidth',3);
+% legend('f','L_2 approximation','L_{2c} approximation','L_\infty approximation')
+% 
+% % res1 = max(abs(f(x) - polyval(p5_tild,x)));
+% % res2 = max(abs(f(x) - polyval(p5_hat,x)));
+% 
+% norm_pmax = norm(polyval(p5_tild,x) - (x.^6 - 1),'inf');
+% norm_pmax = norm(polyval(p5_hat,x) - (x.^6 - 1),'inf');
 % x = -3 : 0.01 : 5;
 % p = [1,-2,1,0];
 % p1 = [-11/4,55/64,-1/256];
@@ -990,3 +1014,24 @@ norm_pmax = norm(polyval(p5_hat,x) - (x.^6 - 1),'inf');
 % end
 % title('Tschebyscheff-Polynome');
 % hold off;
+
+% 7.7 Beispiel 7.29
+% A = [2.8452,1.5151,3.8814;1.3423,1.8106,2.8356;0.1438,-0.77 1.3433]
+% A = [2,3,1;1,8,9;10,12,11];
+% A = A' + A
+% eig(A)
+% 
+% Qk = eye(3);
+% for i = 1 : 100
+%     B = A * Qk;
+%     [Qk,Rk] = qr(B);
+%     if mod(i,10) == 0
+%         disp("Rk: ");
+%         disp(Rk);
+%         Ak = Qk' * A * Qk;
+%         disp("Ak : ");
+%         disp(Ak);
+%         
+%     end
+% end
+%     

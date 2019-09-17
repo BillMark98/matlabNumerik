@@ -1,3 +1,5 @@
+% given u, and x calculate the polynomial evaluted at x(k) k = 1..end
+% where the polynomial is given by sum(u(i) * x^(i-1), i = 1..length(u))
 function y = monomPolynom(u,x)
 n = length(u);
 m = length(x);

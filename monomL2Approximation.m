@@ -12,6 +12,8 @@ for i = 1 : (n+1)
     b(i) = integral(@(x) x.^(i-1) .* f(x), -1,1);
     
     % another version for calculation of A
+    % since index begins with 1, which means, e.g A(1,1) = (p_0 , p_0) = 2
+    % = 2/(2 * 1 - 1)  A(i,i) = (x^(i-1) , x^(i-1)) = 1/(2i-1) * 2
     A(i,i) = 2/(2*i - 1);
     for j = (i+1):(n+1)
         if (mod(i+j,2) == 0)
