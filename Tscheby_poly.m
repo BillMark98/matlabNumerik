@@ -1,3 +1,6 @@
+% given n, give back a vector c
+% such that the n-th Tschebycheff Polynomial (degree n) is given by
+% c(1)x^n + c(2)x^(n-1).... + c(n + 1)
 function c = Tscheby_poly(n)
 if n == 0
     c = 1;

@@ -1,3 +1,6 @@
+% given f a function handle and k  the degree
+% gives back c s.t the Best L2 approximation of f in Pk ( polynomial with
+% degree <= k) is given by c(1) x^k + c(2) x^(k-1) ... + c(k+1)
 function c = L2_BN(f,k)
 % d = zeros((k+1),1);
 % c = d;
