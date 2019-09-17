@@ -5,7 +5,7 @@ function [y] = lagrangeIP(t,ft,x)
 %     end
 %     
     n = length(t) - 1;
-    y = zeros(length(x));
+    y = zeros(1,length(x));
     for i = 0:n
         y = y + ft(i+1)*lagrangePolynomial(i,t,x);
     end
