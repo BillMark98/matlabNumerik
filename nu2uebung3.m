@@ -1,0 +1,6 @@
+A1 = magic(5)
+s = Spektrum(A1,1e-12)
+eig(A1)
+A2 = magic(10)
+s = Spektrum(A2,1e-12)
+eig(A2)

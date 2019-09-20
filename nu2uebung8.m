@@ -1,6 +1,7 @@
+%% A4 a,b
 f = @(x) 1./(1 + x.^2);
 L = [5,10,40];
-ende = 2;
+ende = 5;
 I = [-ende,ende];
 figure;
 
@@ -40,6 +41,7 @@ for index = 1 : 3
     legend('f','IP');
 end
 
+%%
 figure;
 for index = 1 : 3
     n = L(index);

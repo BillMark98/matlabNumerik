@@ -12,7 +12,11 @@ errc = abs(zentraleDifferenz(h,x)-Df(x));
 subplot(2,1,1)
 loglog(h,errp,'-*');
 % optimal h at 10^(-8)
-% slope 1
+% slope 1 . right after the optimal value, which is the case 
+% when the effect of rounding errors are negligible so the error
+% is primarily induced by the discretization error so proportional to h
+% which is the value of the slope
+
 % calculate the theoretic value
 % h = sqrt(4 * eps * || f ||_infty / || f''||_infty) here since h is small
 % || f ||_infty is f(1) and || f'' ||_infty is |f''(1)|
@@ -22,7 +26,10 @@ subplot(2,1,2)
 loglog(h,errc,'+');
 legend('errc');
 %optimal h at 10^(-7)
-%slope 2
+%slope 2 right after the optimal value, which is the case 
+% when the effect of rounding errors are negligible so the error
+% is primarily induced by the discretization error so proportional to h^2
+% which is the value of the slope
 
 % calculate the theoretic value
 % h = (3 * eps * || f ||_infty / || f'''||_infty)^(1/3) here since h is small
