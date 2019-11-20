@@ -1,10 +1,11 @@
-function y = AB4(t0,tend,n,y0,funhandle)
+function y = AB4(t0,tend,n,y_init,funhandle)
 h = (tend - t0)/n;
-y_init = classicRK(t0,t0 + 3*h,3,y0,funhandle);
+y0 = y_init(:,1);
 y = zeros(length(y0),n + 1);
-% err = zeros(n+1,1);
-y(:,1) = y0;
-y(:,2:4) = y_init(:,2:4);
+% initialize the y
+y(:,1:4) = y_init(:,1:4);
+% the coeffcients of bi of AB method, the factor 1/24 will be multiplied
+% after summing up all the values, see the code below.
 bl = [-9, 37, -59,55];
 t = t0;
 for m = 5 : n + 1
