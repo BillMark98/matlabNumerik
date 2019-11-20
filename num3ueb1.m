@@ -70,7 +70,7 @@ for n = 0 : N
     end
     L(1,n+1) = diffE;
     L(2,n+1) = diffV;
-    L(3,n+1) =diff23;
+    L(3,n+1) = diff23;
     L(4,n+1) = diff4;
     L(5,n+1) = diff5;
 end
