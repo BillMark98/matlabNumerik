@@ -34,3 +34,13 @@ for j = 1 : n
 end
 
 
+
+% 
+% LHS = [1 0; 0 1] - h * beta * A;
+% [L,U,P] = lu(LHS)
+% 
+% rhs1 = A * y(:,m - 1) + g(t + alpha(1) * h);
+% k1 = U\(L\(P * rhs1));
+% rhs2 = A * (y(:,m-1) + h * B(2,1)*k1) + g(t + alpha(2) * h);
+% k2 = U\(L\(P * rhs2));
+% y(:,m) = y(:,m-1) + h * (gamma(1) * k1 + gamma(2) * k2);

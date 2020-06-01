@@ -123,7 +123,7 @@ t0 = 0;
 tend = 10;
 y_ans = @(t) 2 * exp(-t) .* [1;1] + [sin(t);cos(t)];
 correctAns = y_ans(10);
-epsilon = 1e-3;
+epsilon = 1e-1;
 flagFound = false;
 for mode = 1 : 2
     if(mode == 1)
@@ -131,7 +131,6 @@ for mode = 1 : 2
     else
         BETA = "1/2 - $$\sqrt{3}$$/6";
     end
-    epsilon = 1e-3;
     flagFound = false;
     for n = 50:1000
     %     try 
@@ -154,9 +153,10 @@ for mode = 1 : 2
     else
         figure;
         T = linspace(t0,tend,n + 1);
-%         n1 = n - 30;
-%         h1 = (tend - t0)/n1;
-        h1 = min(h + 0.0005, (4 * sqrt(3) + 7)/1000);
+        n1 = n - 30;
+        h1 = max((tend - t0)/n1,h + 0.001);
+        
+%         h1 = min(h + 0.0005, (4 * sqrt(3) + 7)/1000);
 %         h1 = (tend - t0)/n1;
         n1 = round((tend - t0)/h1);
         T2 = linspace(t0,tend,n1 + 1);
@@ -166,12 +166,14 @@ for mode = 1 : 2
         title('the first component of the answer');
         hold on
         plot(T2,yh1(1,:),'r');
+        ylim([-3,3]);
         legend(['correct y_1, step = ',num2str(h)],['y_1 with larger step = ',num2str(h1)])
         subplot(2,1,2)
         plot(T,y(2,:),'b-');
         title('the second component of the answer');
         hold on
         plot(T2,yh1(2,:),'r');
+        ylim([-3,3]);
         legend(['correct y_2, step = ',num2str(h)],['y_2 with larger step = ',num2str(h1)],'Position',[0.3,0.3,0.2,0.1])
         myTitle = sgtitle(["SDIRK-method with beta = ", BETA]);
         set(myTitle,'Interpreter','latex','fontsize',12);
